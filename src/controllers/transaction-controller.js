@@ -61,6 +61,7 @@ const getAllTransaction = async (req, res) => {
         const { type, category, startDate, endDate, page, limit} = req.query;
 
         const filter = {};
+        filter.isDeleted = false;
 
         // filter by type
         if (type) {
@@ -119,7 +120,7 @@ const getAllTransaction = async (req, res) => {
 // get transaction By id
 const getTransactionById = async (req, res) => {
     try {
-        const transaction = await Transaction.findById(req.params.id)
+        const transaction = await Transaction.findByOne({_id: req.params.id, isDeleted: false})
             .populate('createdBy', 'name email role');
 
         if (!transaction) {
@@ -172,7 +173,7 @@ const updateTransaction = async(req, res) => {
             }
         }
 
-        const transaction = await Transaction.findById(req.params.id);
+        const transaction = await Transaction.findByOne({_id: req.params.id, isDeleted: false});
         if (!transaction) {
             return res.status(404).json({
                 success: false,
