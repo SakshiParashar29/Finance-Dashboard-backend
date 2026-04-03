@@ -5,6 +5,7 @@ const {connectDB} = require('./config/db')
 const authRouter = require('./routes/auth-routes');
 const userRouter = require('./routes/user-routes');
 const transactionRouter = require('./routes/transaction-routes');
+const dashboardRouter = require('./routes/dashboard-route');
 
 const app = express();
 connectDB();
@@ -14,6 +15,7 @@ app.use(express.json());
 app.use('/api/auth', authRouter);
 app.use('/api/user', userRouter);
 app.use('/api/transaction', transactionRouter);
+app.use('/api/dashboard', dashboardRouter);
 
 app.listen(PORT, () => {
     console.log(`Server is listening on PORT ${PORT}`);
