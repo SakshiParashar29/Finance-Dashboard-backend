@@ -1,4 +1,4 @@
-# Zorvyn Backend — Finance Data Processing and Access Control API
+# Finance Data Processing and Access Control API
 
 A backend system for a finance dashboard that supports user role management,
 financial records, dashboard analytics, and role-based access control.
